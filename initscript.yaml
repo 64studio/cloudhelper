@@ -1,0 +1,9 @@
+#cloud-config
+
+#
+# change the RECIPE variable in the script below.
+#
+
+runcmd:
+ - export RECIPE="stretch_setup"
+ - wget -O - https://raw.githubusercontent.com/64studio/cloudhelper/master/bootstrap/bootstrap | bash

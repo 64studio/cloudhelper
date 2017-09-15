@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+#
+# set_timezone: set the timezone of a system
+#
+#    currently can only set the timezone to Europe/London
+#
+#    usage: set_timezone <timezone>
+#           set_timezone "Europe/London"
+#
+#
+#   Copyright (c) 2017 Chris Obbard <chris@64studio.com>
+#
+
+
+
+# the timezone we are setting the system to
+TIMEZONE=$1
+
+# set timezone
+timedatectl set-timezone $TIMEZONE

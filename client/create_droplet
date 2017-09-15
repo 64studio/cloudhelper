@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#
+# create_droplet: script to create a digitalocean droplet from the commandline
+#
+#    creates digitalocean droplets
+#
+#    usage: create_droplet
+#
+#
+#   Copyright (c) 2017 Chris Obbard <chris@64studio.com>
+#
+
+
+
+# first command

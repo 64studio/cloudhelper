@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+#
+# secure_ssh: secures OpenSSH
+#
+#    disables root ssh logins
+#
+#    usage: secure_ssh
+#
+#
+#   Copyright (c) 2017 Chris Obbard <chris@64studio.com>
+#
+
+
+
+# disable root ssh logins
+sed -i "s|[#]*PermitRootLogin.*|PermitRootLogin no|g" "/etc/ssh/sshd_config"
+
+# restart the sshd service
+systemctl restart sshd.service

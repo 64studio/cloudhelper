@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+#
+# stretch_setup: basic setup script for stretch
+#
+#    installs updates, secures ssh & creates 64studio users
+#
+#    usage: stretch_setup
+#
+#
+#   Copyright (c) 2017 Chris Obbard <chris@64studio.com>
+#
+
+
+# set the timezone
+./setup/system/set_timezone "Europe/London"
+
+# install updates
+./setup/system/install_updates
+
+# secure ssh server
+./setup/ssh/secure_ssh
+
+# add 64studio users
+./setup/user/create_user_from_github chris obbardc "Chris Obbard" chris@64studio.com

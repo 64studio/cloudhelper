@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+#
+# install_updates: installs debian updates
+#
+#    installs updates to the system
+#
+#    usage: install_updates
+#
+#
+#   Copyright (c) 2017 Chris Obbard <chris@64studio.com>
+#
+
+
+
+# upgrade the package lists
+apt-get update
+
+# perform a package upgrade
+apt-get dist-upgrade --yes

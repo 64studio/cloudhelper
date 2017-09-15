@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+#
+# create_user_from_github: Creates user & imports ssh key(s) from GitHub.
+#
+#    Helper to create a user account
+#
+#    usage: create_user_from_github <username> <github_username> <full_name> <email_address>
+#           create_user_from_github chris obbardc "Chris Obbard" chris@64studio.com
+#
+#   Copyright (c) 2017 Chris Obbard <chris@64studio.com>
+#
+
+
+
+# read args
+USERNAME=$1
+GITHUB_USERNAME=$2
+FULL_NAME=$3
+EMAIL_ADDRESS=$4
+
+
+HOMEDIR=/home/$USERNAME
+
+# add the user
+adduser $USERNAME --gecos ""
+
+# change full name name
+chfn $USERNAME --full-name "$FULL_NAME"
+
+# add the user to the sudo group
+usermod -aG sudo $USERNAME
+
+# change password on first login
+chage -d 0 $USERNAME
+
+# import SSH key from github
+mkdir $HOMEDIR/.ssh
+curl https://github.com/$GITHUB_USERNAME.keys | tee -a $HOMEDIR/.ssh/authorized_keys
+chmod 700 $HOMEDIR/.ssh
+chmod 600 $HOMEDIR/.ssh/authorized_keys
+chown $USERNAME:$USERNAME $HOMEDIR/.ssh
+chown $USERNAME:$USERNAME $HOMEDIR/.ssh/authorized_keys
+
+# setup git config
+cat >>~/.gitconfig <<EOF
+[user]
+        name = $FULL_NAME
+        email = $EMAIL_ADDRESS
+EOF
+
+# setup debian packaging config
+cat >>~/.bashrc <<EOF
+DEBEMAIL="$EMAIL_ADDRESS"
+DEBFULLNAME="$FULL_NAME"
+export DEBEMAIL DEBFULLNAME
+EOF

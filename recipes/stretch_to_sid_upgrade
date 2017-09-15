@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#
+# stretch_to_sid_upgrade: upgrades stretch to sid
+#
+#    sets release to sid, installs updates, secures ssh & creates 64studio users
+#
+#    usage: stretch_to_sid_upgrade
+#
+#
+#   Copyright (c) 2017 Chris Obbard <chris@64studio.com>
+#
+
+
+
+# step 1

@@ -18,7 +18,7 @@ rm -rf /tmp/cloudhelper-master
 
 # install dependencies
 apt-get update
-apt-get install unzip wget --yes
+apt-get install unzip wget curl --yes
 
 # move to the system temporary folder
 cd /tmp

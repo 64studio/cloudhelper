@@ -14,7 +14,7 @@
 RECIPE=$1
 
 # remove temporary folder if we have already run before
-rm -rf /tmp/cloudhelper
+rm -rf /tmp/cloudhelper-master
 
 # install dependencies
 apt-get update
@@ -28,7 +28,7 @@ wget https://github.com/64studio/cloudhelper/archive/master.zip
 unzip master.zip
 
 # go into the directory
-cd /tmp/cloudhelper
+cd /tmp/cloudhelper-master
 
 # run the recipe
 ./recipes/$RECIPE

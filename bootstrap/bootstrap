@@ -16,6 +16,13 @@ RECIPE=$1
 # remove temporary folder if we have already run before
 rm -rf /tmp/cloudhelper
 
+# install dependencies
+apt-get update
+apt-get install unzip wget --yes
+
+# move to the system temporary folder
+cd /tmp
+
 # get the latest code
 wget https://github.com/64studio/cloudhelper/archive/master.zip
 unzip master.zip

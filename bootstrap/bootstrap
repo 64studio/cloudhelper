@@ -4,18 +4,20 @@
 #
 #    set the RECIPE environment variable to the recipe you want to run.
 #
-#    usage: bootstrapper
+#    usage: bootstrap <recipe>
 #
 #
 #   Copyright (c) 2017 Chris Obbard <chris@64studio.com>
 #
 
+# read in the args
+RECIPE=$1
 
 # remove temporary folder if we have already run before
 rm -rf /tmp/cloudhelper
 
 # get the latest code
-wget https://github.com/64studio/cdd-sel/archive/master.zip
+wget https://github.com/64studio/cloudhelper/archive/master.zip
 unzip master.zip
 
 # go into the directory

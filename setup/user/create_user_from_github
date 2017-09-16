@@ -30,6 +30,9 @@ chfn $USERNAME --full-name "$FULL_NAME"
 # add the user to the sudo group
 usermod -aG sudo $USERNAME
 
+# remove the user's password
+passwd -d $USERNAME
+
 # change password on first login
 chage -d 0 $USERNAME
 

@@ -22,7 +22,7 @@ EMAIL_ADDRESS=$4
 HOMEDIR=/home/$USERNAME
 
 # add the user
-adduser $USERNAME --gecos "" --password ""
+adduser $USERNAME --gecos "" --disabled-password
 
 # change full name name
 chfn $USERNAME --full-name "$FULL_NAME"

@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+#
+# lighttpd_install_simple: install Lighttpd
+#
+#    installs & sets up Lighttpd with support for:-
+#       - vhosts
+#       - directory listings
+#       - user directories
+#
+#    add any users that will need write access to web data to the www-data group
+#      usermod -aG www-data chris
+#
+#    usage: lighttpd_install_simple
+#
+#
+#   Copyright (c) 2017 Chris Obbard <chris@64studio.com>
+#
+
+
+
+# install lighttpd package
+# (libterm-readline-gnu-perl is as per Debian bug #866737 and still in stretch)
+apt-get install lighttpd libterm-readline-gnu-perl --yes
+
+# set www ownership
+chown www-data:www-data -R /var/www/
+chmod g+rwxs /var/www
+chmod g+rwxs /var/www/html
+
+# remove the default index page & show access denied message
+rm /var/www/html/index.lighttpd.html
+echo "<h1>Access Denied</h1>" | tee -a /var/www/html/index.html
+
+# enable virtualhosts
+mkdir /etc/lighttpd/vhosts.d
+chown www-data:www-data -R /etc/lighttpd/vhosts.d
+echo include_shell \"cat /etc/lighttpd/vhosts.d/*.conf\" | tee -a /etc/lighttpd/lighttpd.conf
+
+# list directory contents
+lighttpd-enable-mod dir-listing
+echo "dir-listing.show-readme = \"enable\"" | tee -a /etc/lighttpd/conf-enabled/10-dir-listing.conf
+echo "dir-listing.hide-readme-file = \"enable\"" | tee -a /etc/lighttpd/conf-enabled/10-dir-listing.conf
+echo "dir-listing.set-footer = \" \"" | tee -a /etc/lighttpd/conf-enabled/10-dir-listing.conf
+echo "dir-listing.external-js = \" \"" | tee -a /etc/lighttpd/conf-enabled/10-dir-listing.conf
+
+# user directories (http://$host/~$user goes to /home/$user/public_html)
+lighttpd-enable-mod userdir
+
+# access log (do not enable this for user privacy reasons)
+# lighttpd-enable-mod accesslog
+
+# restart to apply changes
+systemctl restart lighttpd

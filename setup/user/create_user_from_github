@@ -45,14 +45,16 @@ chown $USERNAME:$USERNAME $HOMEDIR/.ssh
 chown $USERNAME:$USERNAME $HOMEDIR/.ssh/authorized_keys
 
 # setup git config
-cat >>~/.gitconfig <<EOF
+touch $HOMEDIR/.gitconfig
+chown $USERNAME:$USERNAME $HOMEDIR/.gitconfig
+cat >>$HOMEDIR/.gitconfig <<EOF
 [user]
-        name = $FULL_NAME
-        email = $EMAIL_ADDRESS
+	name = $FULL_NAME
+	email = $EMAIL_ADDRESS
 EOF
 
 # setup debian packaging config
-cat >>~/.bashrc <<EOF
+cat >>$HOMEDIR/.bashrc <<EOF
 DEBEMAIL="$EMAIL_ADDRESS"
 DEBFULLNAME="$FULL_NAME"
 export DEBEMAIL DEBFULLNAME

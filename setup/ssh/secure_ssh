@@ -12,8 +12,18 @@
 
 
 
-# disable root ssh logins
+# set PermitRootLogin no
 sed -i "s|[#]*PermitRootLogin.*|PermitRootLogin no|g" "/etc/ssh/sshd_config"
+
+# set ChallengeResponseAuthentication no
+sed -i "s|[#]*ChallengeResponseAuthentication.*|ChallengeResponseAuthentication no|g" "/etc/ssh/sshd_config"
+
+# set PasswordAuthentication no
+sed -i "s|[#]*PasswordAuthentication.*|PasswordAuthentication no|g" "/etc/ssh/sshd_config"
+
+# set UsePAM no
+sed -i "s|[#]*UsePAM.*|UsePAM no|g" "/etc/ssh/sshd_config"
+
 
 # restart the sshd service
 systemctl restart sshd.service

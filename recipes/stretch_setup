@@ -21,4 +21,6 @@
 ./setup/ssh/secure_ssh
 
 # add 64studio users
+# format: system_username github_username full_name email
 ./setup/user/create_user_from_github chris obbardc "Chris Obbard" chris@64studio.com
+./setup/user/create_user_from_github daneil danielhjames "Daniel James" daniel@64studio.com

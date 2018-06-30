@@ -21,8 +21,8 @@ sed -i "s|[#]*ChallengeResponseAuthentication.*|ChallengeResponseAuthentication 
 # set PasswordAuthentication no
 sed -i "s|[#]*PasswordAuthentication.*|PasswordAuthentication no|g" "/etc/ssh/sshd_config"
 
-# set UsePAM no
-sed -i "s|[#]*UsePAM.*|UsePAM no|g" "/etc/ssh/sshd_config"
+# set UsePAM yes
+sed -i "s|[#]*UsePAM.*|UsePAM yes|g" "/etc/ssh/sshd_config"
 
 
 # restart the sshd service
